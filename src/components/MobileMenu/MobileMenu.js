@@ -11,19 +11,7 @@ import VisuallyHidden from '../VisuallyHidden';
 
 const MobileMenu = ({ isOpen, onDismiss, onOpen }) => {
   if (!isOpen) {
-    return (
-      <Wrapper>
-        <UnstyledButton>
-          <Icon id="shopping-bag" strokeWidth={2} />
-        </UnstyledButton>
-        <UnstyledButton>
-          <Icon id="search" strokeWidth={2} />
-        </UnstyledButton>
-        <UnstyledButton onClick={onOpen}>
-          <Icon id="menu" strokeWidth={2} />
-        </UnstyledButton>
-      </Wrapper>
-    );
+    return null;
   }
 
   return (
@@ -52,22 +40,6 @@ const MobileMenu = ({ isOpen, onDismiss, onOpen }) => {
     </div>
   );
 };
-
-const Wrapper = styled.div`
-  display: none;
-
-  @media ${QUERIES.tabletAndSmaller} {
-    display: revert;
-    display: flex;
-    flex: 2;
-    justify-content: flex-end;
-    gap: 32px;
-  }
-
-  @media ${QUERIES.phoneAndSmaller} {
-    gap: 16px;
-  }
-`;
 
 const Overlay = styled(DialogOverlay)`
   position: fixed;

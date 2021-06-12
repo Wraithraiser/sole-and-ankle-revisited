@@ -9,19 +9,16 @@ import Icon from '../Icon';
 
 const SuperHeader = () => {
   return (
-    <>
-      <Wrapper>
-        <MarketingMessage>
-          Free shipping on domestic orders over $75!
-        </MarketingMessage>
-        <SearchInput />
-        <HelpLink href="/help">Help</HelpLink>
-        <UnstyledButton>
-          <Icon id="shopping-bag" strokeWidth={1} />
-        </UnstyledButton>
-      </Wrapper>
-      <MobileWrapper></MobileWrapper>
-    </>
+    <Wrapper>
+      <MarketingMessage>
+        Free shipping on domestic orders over $75!
+      </MarketingMessage>
+      <SearchInput />
+      <HelpLink href="/help">Help</HelpLink>
+      <UnstyledButton>
+        <Icon id="shopping-bag" strokeWidth={1} />
+      </UnstyledButton>
+    </Wrapper>
   );
 };
 
@@ -53,15 +50,6 @@ const HelpLink = styled.a`
 
   &:not(:focus-visible) {
     outline: none;
-  }
-`;
-
-const MobileWrapper = styled.div`
-  display: none;
-  @media ${QUERIES.tabletAndSmaller} {
-    height: 4px;
-    background-color: ${COLORS.gray[900]};
-    display: revert;
   }
 `;
 
