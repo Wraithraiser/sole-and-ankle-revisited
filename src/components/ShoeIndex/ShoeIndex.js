@@ -9,20 +9,29 @@ import Spacer from '../Spacer';
 import ShoeSidebar from '../ShoeSidebar';
 import ShoeGrid from '../ShoeGrid';
 
+const ShoeBreadcrumbs = () => {
+  return (
+    <Breadcrumbs>
+      <Breadcrumbs.Crumb href="/">Home</Breadcrumbs.Crumb>
+      <Breadcrumbs.Crumb href="/sale">Sale</Breadcrumbs.Crumb>
+      <Breadcrumbs.Crumb href="/sale/shoes">Shoes</Breadcrumbs.Crumb>
+    </Breadcrumbs>
+  );
+};
+
 const ShoeIndex = ({ sortId, setSortId }) => {
   return (
     <Wrapper>
       <MainColumn>
-        <MobileAndTablet>
-          <Breadcrumbs>
-            <Breadcrumbs.Crumb href="/">Home</Breadcrumbs.Crumb>
-            <Breadcrumbs.Crumb href="/sale">Sale</Breadcrumbs.Crumb>
-            <Breadcrumbs.Crumb href="/sale/shoes">Shoes</Breadcrumbs.Crumb>
-          </Breadcrumbs>
-        </MobileAndTablet>
         <Header>
-          <Title>Running</Title>
-          <TabletAndUpSelect>
+          <div>
+            <MobileBreadcrumbs>
+              <ShoeBreadcrumbs />
+            </MobileBreadcrumbs>
+            <Title>Running</Title>
+          </div>
+
+          <SortFilterWrapper>
             <Select
               label="Sort"
               value={sortId}
@@ -31,17 +40,15 @@ const ShoeIndex = ({ sortId, setSortId }) => {
               <option value="newest">Newest Releases</option>
               <option value="price">Price</option>
             </Select>
-          </TabletAndUpSelect>
+          </SortFilterWrapper>
         </Header>
         <Spacer size={32} />
         <ShoeGrid />
       </MainColumn>
       <LeftColumn>
-        <Breadcrumbs>
-          <Breadcrumbs.Crumb href="/">Home</Breadcrumbs.Crumb>
-          <Breadcrumbs.Crumb href="/sale">Sale</Breadcrumbs.Crumb>
-          <Breadcrumbs.Crumb href="/sale/shoes">Shoes</Breadcrumbs.Crumb>
-        </Breadcrumbs>
+        <DesktopBreadcrumbs>
+          <ShoeBreadcrumbs />
+        </DesktopBreadcrumbs>
         <Spacer size={42} />
         <ShoeSidebar />
       </LeftColumn>
@@ -56,12 +63,6 @@ const Wrapper = styled.div`
   gap: 32px;
 `;
 
-const TabletAndUpSelect = styled.div`
-  @media ${QUERIES.phoneAndSmaller} {
-    display: none;
-  }
-`;
-
 const LeftColumn = styled.div`
   flex-basis: 248px;
 
@@ -74,22 +75,38 @@ const MainColumn = styled.div`
   flex: 1;
 `;
 
-const MobileAndTablet = styled.div`
-  display: none;
-  @media ${QUERIES.tabletAndSmaller} {
-    display: revert;
-  }
-`;
-
 const Header = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: baseline;
+
+  @media ${QUERIES.tabletAndSmaller} {
+    align-items: flex-end;
+  }
 `;
 
 const Title = styled.h2`
   font-size: 1.5rem;
   font-weight: ${WEIGHTS.medium};
+`;
+
+const DesktopBreadcrumbs = styled.div`
+  @media ${QUERIES.tabletAndSmaller} {
+    display: none;
+  }
+`;
+const MobileBreadcrumbs = styled.div`
+  display: none;
+
+  @media ${QUERIES.tabletAndSmaller} {
+    display: revert;
+  }
+`;
+
+const SortFilterWrapper = styled.div`
+  @media ${QUERIES.phoneAndSmaller} {
+    display: none;
+  }
 `;
 
 export default ShoeIndex;
